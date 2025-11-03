@@ -8,11 +8,33 @@
 
 ---
 
-### 🧰 Featured Projects
+## 🚀 Featured Projects
 
-🚀 [TelHawk Stack](https://github.com/telhawk-systems/telhawk-stack) — OCSF-compliant SIEM platform (Splunk-compatible)  
-🛰️ [TelHawk Proxy](https://github.com/telhawk-systems/telhawk-proxy) — Telemetry reverse proxy for real-time visibility  
-🧩 [Secure CI Pipeline](https://github.com/shortontech/secure-ci-pipeline) — Hardened CI/CD with Gitleaks, Bandit, CodeQL
+### 🛰️ TelHawk Proxy – Real-Time Telemetry & Bot Detection Middleware  
+A transparent reverse proxy built in **Go** that automatically injects tracking code into HTML responses to collect telemetry data for security, fraud detection, and operational analytics.  
+- HMAC-authenticated event collection with pluggable sinks (**NDJSON**, **Kafka**, **PostgreSQL**).  
+- Privacy-aware and compliance-minded by design (GDPR/HIPAA safe).  
+- Production-hardened with **Prometheus** metrics, health checks, and a distroless Docker image.  
+📂 [github.com/telhawk-systems/telhawk-proxy](https://github.com/telhawk-systems/telhawk-proxy)
+
+---
+
+### 🦅 TelHawk Stack – Open Cybersecurity SIEM Platform (Splunk-Compatible)  
+An **OCSF-compliant**, **Go-based** SIEM platform using **OpenSearch** for log storage and analysis.  
+- Modular microservices for **auth**, **ingestion**, **query**, and **visualization**.  
+- CLI tool (`thawk`) for token management, event ingestion, and SPL-style searches.  
+- Splunk HEC-compatible ingestion for easy migration from proprietary platforms.  
+📂 [github.com/telhawk-systems/telhawk-stack](https://github.com/telhawk-systems/telhawk-stack)
+
+---
+
+### 🔒 Secure CI/CD Pipeline – Automated DevSecOps Workflow  
+A **security-hardened CI/CD reference implementation** that integrates automated scanning, compliance enforcement, and code-quality gates within GitHub Actions.  
+- Implements **SAST (Bandit, CodeQL)**, **DAST (OWASP ZAP)**, and **secret detection (Gitleaks)**.  
+- Enforces merge-blocking security gates to prevent vulnerable builds.  
+- Uploads SARIF reports for visibility in GitHub’s code-scanning dashboard.  
+- Demonstrates modern **DevSecOps** principles: shift-left security, automation, and compliance-by-default.  
+📂 [github.com/shortontech/secure-ci-pipeline](https://github.com/shortontech/secure-ci-pipeline)
 
 ---
 
