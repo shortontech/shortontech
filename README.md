@@ -49,7 +49,28 @@ A **security-hardened CI/CD reference implementation** that integrates automated
 - Mentor & red-teamer turned builder of safer pipelines  
 - Motto: _“Modern attackers automate — so defenders must too.”_  
 
+## 💼 Career Highlights
+
+### Bitcoin Solutions — Lead Software Engineer (2022–2025)  
+Re-architected the crypto transaction pipeline (**Prime Trust → Fortress Trust**) to triple throughput and remove single points of failure. Led a team of five engineers implementing containerized dev environments that cut setup time from hours to minutes. Built incident-response playbooks that halted an insider-assisted breach and were later adopted company-wide.
+
+---
+
+### SDK Worldwide LLC — Senior Software Engineer (2019–2025)  
+Developed secure ETL pipelines and React dashboards unifying ad, payment, and analytics data across Google Ads, Facebook, Stripe, and PayPal. Designed anomaly detection systems that identified fraudulent ad spend in real time. Rolled out org-wide **DKIM/SPF/DMARC**, improving deliverability by 40%.
+
+---
+
+### Capital Research International — Lead Software Engineer (2017–2018)  
+Directed a four-person engineering team modernizing an e-commerce analytics platform. Rebuilt core services into Dockerized microservices supporting thousands of concurrent users. Launched automated CI pipelines that reduced release rollback rates to under 1%.
+
+---
+
+### MAS Group Inc. — Software Engineer – Security (2015–2017)  
+Introduced **OWASP Top 10** remediation and secure SDLC practices across internal projects. Refactored legacy PHP applications into modular, secure systems with improved performance and maintainability. Led internal security workshops to improve code quality organization-wide.
+
 ---
 
 ### 📫 Connect
 [LinkedIn](https://www.linkedin.com/in/steven-horton-66325520/)
+
