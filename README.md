@@ -1,18 +1,18 @@
-# Hey there, I’m Steven Horton
+# 👋 Hey there, I’m Steven Horton
 
 **Security Engineer | 16 years across fintech, e-commerce, and AI**
 
 Security engineer who treats clarity as the first line of defense. I obsess over making the vulnerable path impossible to take by accident.
 
-- Built observability that made a crypto exchange breach immediately visible — contained it with zero customer impact.
-- Author of security tooling that catches what scanners, frameworks, and best practices miss.
-- Built real-time fraud-detection that blocked 52%+ of bot traffic, safeguarding millions in annual marketing spend.
+- 🔍 Built observability that made a crypto exchange breach immediately visible — contained it with zero customer impact.
+- 🛠️ Author of security tooling that catches what scanners, frameworks, and best practices miss.
+- 🤖 Built real-time fraud-detection that blocked 52%+ of bot traffic, safeguarding millions in annual marketing spend.
 
 ---
 
-## Featured Projects
+## 🚀 Featured Projects
 
-### [Pickle](https://github.com/shortontech/pickle) — The World’s Most Secure Web Framework
+### 🥒 [Pickle](https://github.com/shortontech/pickle) — The World’s Most Secure Web Framework
 
 A code generation framework for **Go** that makes entire vulnerability classes structurally impossible. You write controllers, migrations, request classes, and middleware. Pickle generates plain, idiomatic Go. The output compiles to a single static binary with no runtime dependency on Pickle.
 
@@ -26,7 +26,7 @@ A code generation framework for **Go** that makes entire vulnerability classes s
 
 ---
 
-### [TelHawk Stack](https://github.com/telhawk-systems/telhawk-stack) — Open Cybersecurity SIEM Platform
+### 🦅 [TelHawk Stack](https://github.com/telhawk-systems/telhawk-stack) — Open Cybersecurity SIEM Platform
 
 An **OCSF-compliant**, **Go-based** SIEM platform using **OpenSearch** for log storage and analysis. Built on the principle of high-context UI design to optimize for AI and human efficiency.
 
@@ -36,13 +36,13 @@ An **OCSF-compliant**, **Go-based** SIEM platform using **OpenSearch** for log s
 
 ---
 
-## Tech Arsenal
+## 🧠 Tech Arsenal
 
 `Go` • `Python` • `TypeScript` • `SQL` • `C#` • `Docker` • `Kubernetes` • `AWS` • `Terraform` • `PostgreSQL` • `Kafka` • `GitHub Actions` • `GitLab`
 
 ---
 
-## Career Highlights
+## 💼 Career Highlights
 
 ### Horton Security Consulting — Independent Consultant (Apr 2025 – Present)
 Incident response and infrastructure hardening across multiple client organizations. Built static analysis tooling in Go using tree-sitter that performs deterministic security analysis across Django, Laravel, and Rails codebases — identified a vulnerability in a major open-source project within five hours, resulting in an invitation to their private bug bounty program.
@@ -69,6 +69,6 @@ Inherited a legacy codebase handling customer money; built static analysis tooli
 
 ---
 
-### Connect
+### 📫 Connect
 [LinkedIn](https://www.linkedin.com/in/steven-horton-66325520/)
 
