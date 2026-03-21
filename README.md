@@ -1,76 +1,74 @@
-# 👋 Hey there, I'm Steven Horton
+# Hey there, I’m Steven Horton
 
-**Software Engineer | Security Engineer | DevSecOps | Cloud Security Specialist**
+**Security Engineer | 16 years across fintech, e-commerce, and AI**
 
-💡 15+ years designing and defending fintech, e-commerce, and AI systems.  
-☁️ Builder of resilient CI/CD pipelines, secure infrastructures, and fraud-detection platforms.  
-🔒 Zero-breach record against APT-level threats.
+Security engineer who treats clarity as the first line of defense. I obsess over making the vulnerable path impossible to take by accident.
 
----
-
-## 🚀 Featured Projects
-
-### 🛰️ TelHawk Proxy – Real-Time Telemetry & Bot Detection Middleware  
-A transparent reverse proxy built in **Go** that automatically injects tracking code into HTML responses to collect telemetry data for security, fraud detection, and operational analytics.  
-- HMAC-authenticated event collection with pluggable sinks (**NDJSON**, **Kafka**, **PostgreSQL**).  
-- Privacy-aware and compliance-minded by design (GDPR/HIPAA safe).  
-- Production-hardened with **Prometheus** metrics, health checks, and a distroless Docker image.  
-📂 [github.com/telhawk-systems/telhawk-proxy](https://github.com/telhawk-systems/telhawk-proxy)
+- Built observability that made a crypto exchange breach immediately visible — contained it with zero customer impact.
+- Author of security tooling that catches what scanners, frameworks, and best practices miss.
+- Built real-time fraud-detection that blocked 52%+ of bot traffic, safeguarding millions in annual marketing spend.
 
 ---
 
-### 🦅 TelHawk Stack – Open Cybersecurity SIEM Platform (Splunk-Compatible)  
-An **OCSF-compliant**, **Go-based** SIEM platform using **OpenSearch** for log storage and analysis.  
-- Modular microservices for **auth**, **ingestion**, **query**, and **visualization**.  
-- CLI tool (`thawk`) for token management, event ingestion, and SPL-style searches.  
-- Splunk HEC-compatible ingestion for easy migration from proprietary platforms.  
-📂 [github.com/telhawk-systems/telhawk-stack](https://github.com/telhawk-systems/telhawk-stack)
+## Featured Projects
+
+### [Pickle](https://github.com/shortontech/pickle) — The World’s Most Secure Web Framework
+
+A code generation framework for **Go** that makes entire vulnerability classes structurally impossible. You write controllers, migrations, request classes, and middleware. Pickle generates plain, idiomatic Go. The output compiles to a single static binary with no runtime dependency on Pickle.
+
+**Impossible by construction:**
+- **SQL injection** — parameterized queries exclusively. No API for string interpolation. The unsafe path doesn’t exist.
+- **Mass assignment** — request structs define exactly which fields are accepted. Unvalidated input never reaches the model.
+- **IDOR** — `pickle squeeze` traces route → middleware → controller → query and verifies the chain is scoped by owner. No other framework does this.
+- **Data tampering** — immutable tables are cryptographically hash-chained with SHA-256. Merkle tree checkpoints give O(log n) inclusion proofs you can hand to an auditor.
+
+**Built for AI:** A functioning Pickle app is ~2,000 tokens of source. Ships an MCP server that gives AI models queryable access to your project’s structure — routes, middleware, validation rules, schema — without dumping source files into context.
 
 ---
 
-### 🔒 Secure CI/CD Pipeline – Automated DevSecOps Workflow  
-A **security-hardened CI/CD reference implementation** that integrates automated scanning, compliance enforcement, and code-quality gates within GitHub Actions.  
-- Implements **SAST (Bandit, CodeQL)**, **DAST (OWASP ZAP)**, and **secret detection (Gitleaks)**.  
-- Enforces merge-blocking security gates to prevent vulnerable builds.  
-- Uploads SARIF reports for visibility in GitHub’s code-scanning dashboard.  
-- Demonstrates modern **DevSecOps** principles: shift-left security, automation, and compliance-by-default.  
-📂 [github.com/shortontech/secure-ci-pipeline](https://github.com/shortontech/secure-ci-pipeline)
+### [TelHawk Stack](https://github.com/telhawk-systems/telhawk-stack) — Open Cybersecurity SIEM Platform
+
+An **OCSF-compliant**, **Go-based** SIEM platform using **OpenSearch** for log storage and analysis. Built on the principle of high-context UI design to optimize for AI and human efficiency.
+
+- Modular microservices for **auth**, **ingestion**, **query**, and **visualization**.
+- CLI tool (`thawk`) for token management, event ingestion, and SPL-style searches.
+- Splunk HEC-compatible ingestion for easy migration from proprietary platforms.
 
 ---
 
-### 🧠 Tech Arsenal
-`Python` • `Go` • `TypeScript` • `Docker` • `Kubernetes` • `AWS`  
-`Terraform` • `Postgres` • `Kafka` • `GitHub Actions` • `Grafana`
+## Tech Arsenal
+
+`Go` • `Python` • `TypeScript` • `SQL` • `C#` • `Docker` • `Kubernetes` • `AWS` • `Terraform` • `PostgreSQL` • `Kafka` • `GitHub Actions` • `GitLab`
 
 ---
 
-### 💬 Fun Facts
-- Founder of **TelHawk Systems**, an open-source security analytics suite 🦅  
-- Mentor & red-teamer turned builder of safer pipelines  
-- Motto: _“Modern attackers automate — so defenders must too.”_  
+## Career Highlights
 
-## 💼 Career Highlights
-
-### Bitcoin Solutions — Lead Software Engineer (2022–2025)  
-Re-architected the crypto transaction pipeline (**Prime Trust → Fortress Trust**) to triple throughput and remove single points of failure. Led a team of five engineers implementing containerized dev environments that cut setup time from hours to minutes. Built incident-response playbooks that halted an insider-assisted breach and were later adopted company-wide.
+### Horton Security Consulting — Independent Consultant (Apr 2025 – Present)
+Incident response and infrastructure hardening across multiple client organizations. Built static analysis tooling in Go using tree-sitter that performs deterministic security analysis across Django, Laravel, and Rails codebases — identified a vulnerability in a major open-source project within five hours, resulting in an invitation to their private bug bounty program.
 
 ---
 
-### SDK Worldwide LLC — Senior Software Engineer (2019–2025)  
-Developed secure ETL pipelines and React dashboards unifying ad, payment, and analytics data across Google Ads, Facebook, Stripe, and PayPal. Designed anomaly detection systems that identified fraudulent ad spend in real time. Rolled out org-wide **DKIM/SPF/DMARC**, improving deliverability by 40%.
+### Bitcoin Solutions — Security Engineering Lead (Aug 2022 – Apr 2025)
+Rebuilt logging infrastructure and layered real-time analytics on top, catching a breach that would have been invisible under the previous setup. Red-teamed OpenAI and Anthropic models for customer support automation — built reproducible jailbreak exploits via prompt injection and narrative manipulation, recommended against deployment. Enforced automated security scanning (SAST/DAST/dependencies) in GitLab pipelines without exceptions.
 
 ---
 
-### Capital Research International — Lead Software Engineer (2017–2018)  
-Directed a four-person engineering team modernizing an e-commerce analytics platform. Rebuilt core services into Dockerized microservices supporting thousands of concurrent users. Launched automated CI pipelines that reduced release rollback rates to under 1%.
+### SDK Worldwide LLC — Security & Data Engineer (Feb 2019 – Apr 2022)
+Built secure ETL pipelines in Python unifying data from Google Ads, Facebook, Stripe, and PayPal. Designed real-time anomaly detection that caught ad fraud before it drained customer budgets, blocking 52% of bot traffic. Managed security operations across client organizations — removed backdoors, revoked orphaned access, unified access controls via OAuth and secrets management.
 
 ---
 
-### MAS Group Inc. — Software Engineer – Security (2015–2017)  
-Introduced **OWASP Top 10** remediation and secure SDLC practices across internal projects. Refactored legacy PHP applications into modular, secure systems with improved performance and maintainability. Led internal security workshops to improve code quality organization-wide.
+### Capital Research International — Security Engineering Lead (Mar 2017 – Sep 2018)
+Set standards for four developers: code reviews, automated testing, CI/CD with feature flags. Daily releases, zero rollback. Defended against persistent APT-level threats (China, North Korea) with zero breaches using honeypots to misdirect attackers into controlled environments. Consolidated 15 fragmented systems into a single API surface.
 
 ---
 
-### 📫 Connect
+### MAS Group Inc. — Software Security Engineer (Dec 2015 – Mar 2017)
+Inherited a legacy codebase handling customer money; built static analysis tooling that traced variable flow into SQL to find injection paths — the earliest version of what became Pickle. Gate-kept every product launch; nothing shipped without passing security review.
+
+---
+
+### Connect
 [LinkedIn](https://www.linkedin.com/in/steven-horton-66325520/)
 
