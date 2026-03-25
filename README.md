@@ -14,15 +14,45 @@ Security engineer who treats clarity as the first line of defense. I obsess over
 
 ### 🥒 [Pickle](https://github.com/shortontech/pickle) — The World’s Most Secure Web Framework
 
-A code generation framework for **Go** that makes entire vulnerability classes structurally impossible. You write controllers, migrations, request classes, and middleware. Pickle generates plain, idiomatic Go. The output compiles to a single static binary with no runtime dependency on Pickle.
+A code generation framework for **Go** that makes entire vulnerability classes structurally impossible. You write controllers, migrations, request classes, and middleware. Pickle generates plain, idiomatic Go. The output compiles to a single static binary with no runtime dependency on Pickle. Stop using Pickle whenever you want — the generated code is yours.
 
 **Impossible by construction:**
 - **SQL injection** — parameterized queries exclusively. No API for string interpolation. The unsafe path doesn’t exist.
 - **Mass assignment** — request structs define exactly which fields are accepted. Unvalidated input never reaches the model.
-- **IDOR** — `pickle squeeze` traces route → middleware → controller → query and verifies the chain is scoped by owner. No other framework does this.
-- **Data tampering** — immutable tables are cryptographically hash-chained with SHA-256. Merkle tree checkpoints give O(log n) inclusion proofs you can hand to an auditor.
+- **Validation bypass** — controllers receive pre-validated, typed request structs. The generated binding layer runs validation before your code executes. There is no code path around it.
+- **IDOR** — `pickle squeeze` traces route → middleware → controller → query and verifies the chain is scoped by owner. No other framework does this because no other framework was designed to make its own security properties statically analyzable.
+- **Data tampering** — immutable and append-only tables are cryptographically hash-chained with SHA-256. Merkle tree checkpoints give O(log n) inclusion proofs you can hand to an auditor. Three layers of enforcement: schema DSL, Go compiler, database permissions.
 
-**Built for AI:** A functioning Pickle app is ~2,000 tokens of source. Ships an MCP server that gives AI models queryable access to your project’s structure — routes, middleware, validation rules, schema — without dumping source files into context.
+**Encryption at rest:**
+- `.Encrypted()` columns use AES-256-SIV (deterministic) — searchable via `WhereXxx()`, with range/ordering scopes suppressed at generation time.
+- `.Sealed()` columns use AES-256-GCM (non-deterministic) — write-only, no query scopes generated. For passwords, private keys, medical records.
+- Zero-downtime key rotation via dual-column writes: deploy next key → `pickle key:rotate` → swap → cleanup.
+- Squeeze flags sensitive field names (`email`, `api_key`, `*_token`, `*_secret`) missing encryption annotations.
+
+**RBAC as code:**
+- Roles, permissions, and column visibility defined in versioned policy files with `Up()`/`Down()` — same pattern as migrations.
+- Column-level visibility: `RoleSees("compliance")` generates `SelectFor("compliance")` query scopes. Unknown roles see only `.Public()` columns. Manages roles see everything.
+- Built-in middleware chain: `Auth` → `LoadRoles` → `RequireRole`. Squeeze flags broken chains.
+
+**Gated actions & audit trails:**
+- Every action requires a gate function. The generator renames the action method to unexported — it can only be called through the gated model method.
+- Every successful action writes an append-only audit row in the same database transaction. Both succeed or both roll back. No action persists without its audit record.
+- RBAC policies auto-generate gates: `Can("ban_user")` on a role produces a `CanBanUser` gate wired to role checks.
+
+**Squeeze — static security analysis that understands your framework:**
+- 30+ rules that trace routes, middleware stacks, migrations, and request classes to catch what generic linters can’t see.
+- IDOR detection (read and write), missing rate limits on auth endpoints, unbounded queries, sensitive field leakage, unsafe UUID parsing, enum validation gaps, CSRF coverage, param mismatches.
+- Immutability enforcement: flags raw `UPDATE`/`DELETE` on immutable tables, raw `row_hash` overrides, missing `version_id` on inserts.
+- Encryption enforcement: flags range queries on encrypted columns, any `WHERE` on sealed columns, `ORDER BY` on ciphertext, missing key config.
+- Zero false positives by design. If a rule fires, it’s a real problem.
+
+**GraphQL from migrations:**
+- Full GraphQL API generated from your schema — queries, mutations, Relay pagination, dataloaders, input validation, auth directives. No controllers or request structs needed.
+- Opt-in exposure via policy files: `p.Expose("users")`. No policies directory = no GraphQL schema generated.
+- Field-level auth directives (`@public`, `@auth`, `@ownerOnly`) derived from column visibility annotations.
+- `ControllerAction` adapter reuses existing REST logic as GraphQL mutations without duplication.
+
+**Built for AI:** A functioning Pickle app is ~2,000 tokens of source. Ships an MCP server that gives AI models queryable access to your project’s structure — routes, middleware, validation rules, schema, roles, actions — without dumping source files into context. Even lightweight models produce code that respects your schema, validation rules, and security boundaries.
 
 ---
 
