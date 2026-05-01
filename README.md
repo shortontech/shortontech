@@ -1,104 +1,101 @@
-# 👋 Hey there, I’m Steven Horton
+# Steven Horton
 
-**Security Engineer | 16 years across fintech, e-commerce, and AI**
+**Security Engineer** · Lancaster, CA · Open to relocation  
+Secure-by-design tooling · Framework-aware AppSec · Incident response · Developer guardrails
 
-Security engineer who treats clarity as the first line of defense. I obsess over making the vulnerable path impossible to take by accident.
+I’m a security engineer with 16 years across fintech, e-commerce, and AI-adjacent systems. I like security work that makes the vulnerable path hard to take by accident: generated constraints, explicit authorization posture, framework-aware analysis, and tools developers can run before bad patterns reach production.
 
-- 🔍 Built observability that made a crypto exchange breach immediately visible — contained it with zero customer impact.
-- 🛠️ Author of security tooling that catches what scanners, frameworks, and best practices miss.
-- 🤖 Built real-time fraud-detection that blocked 52%+ of bot traffic, safeguarding millions in annual marketing spend.
-
----
-
-## 🚀 Featured Projects
-
-### 🥒 [Pickle](https://github.com/shortontech/pickle) — The World’s Most Secure Web Framework
-
-A code generation framework for **Go** that makes entire vulnerability classes structurally impossible. You write controllers, migrations, request classes, and middleware. Pickle generates plain, idiomatic Go. The output compiles to a single static binary with no runtime dependency on Pickle. Stop using Pickle whenever you want — the generated code is yours.
-
-**Impossible by construction:**
-- **SQL injection** — parameterized queries exclusively. No API for string interpolation. The unsafe path doesn’t exist.
-- **Mass assignment** — request structs define exactly which fields are accepted. Unvalidated input never reaches the model.
-- **Validation bypass** — controllers receive pre-validated, typed request structs. The generated binding layer runs validation before your code executes. There is no code path around it.
-- **IDOR** — `pickle squeeze` traces route → middleware → controller → query and verifies the chain is scoped by owner. No other framework does this because no other framework was designed to make its own security properties statically analyzable.
-- **Data tampering** — immutable and append-only tables are cryptographically hash-chained with SHA-256. Merkle tree checkpoints give O(log n) inclusion proofs you can hand to an auditor. Three layers of enforcement: schema DSL, Go compiler, database permissions.
-
-**Encryption at rest:**
-- `.Encrypted()` columns use AES-256-SIV (deterministic) — searchable via `WhereXxx()`, with range/ordering scopes suppressed at generation time.
-- `.Sealed()` columns use AES-256-GCM (non-deterministic) — write-only, no query scopes generated. For passwords, private keys, medical records.
-- Zero-downtime key rotation via dual-column writes: deploy next key → `pickle key:rotate` → swap → cleanup.
-- Squeeze flags sensitive field names (`email`, `api_key`, `*_token`, `*_secret`) missing encryption annotations.
-
-**RBAC as code:**
-- Roles, permissions, and column visibility defined in versioned policy files with `Up()`/`Down()` — same pattern as migrations.
-- Column-level visibility: `RoleSees("compliance")` generates `SelectFor("compliance")` query scopes. Unknown roles see only `.Public()` columns. Manages roles see everything.
-- Built-in middleware chain: `Auth` → `LoadRoles` → `RequireRole`. Squeeze flags broken chains.
-
-**Gated actions & audit trails:**
-- Every action requires a gate function. The generator renames the action method to unexported — it can only be called through the gated model method.
-- Every successful action writes an append-only audit row in the same database transaction. Both succeed or both roll back. No action persists without its audit record.
-- RBAC policies auto-generate gates: `Can("ban_user")` on a role produces a `CanBanUser` gate wired to role checks.
-
-**Squeeze — static security analysis that understands your framework:**
-- 30+ rules that trace routes, middleware stacks, migrations, and request classes to catch what generic linters can’t see.
-- IDOR detection (read and write), missing rate limits on auth endpoints, unbounded queries, sensitive field leakage, unsafe UUID parsing, enum validation gaps, CSRF coverage, param mismatches.
-- Immutability enforcement: flags raw `UPDATE`/`DELETE` on immutable tables, raw `row_hash` overrides, missing `version_id` on inserts.
-- Encryption enforcement: flags range queries on encrypted columns, any `WHERE` on sealed columns, `ORDER BY` on ciphertext, missing key config.
-- Zero false positives by design. If a rule fires, it’s a real problem.
-
-**GraphQL from migrations:**
-- Full GraphQL API generated from your schema — queries, mutations, Relay pagination, dataloaders, input validation, auth directives. No controllers or request structs needed.
-- Opt-in exposure via policy files: `p.Expose("users")`. No policies directory = no GraphQL schema generated.
-- Field-level auth directives (`@public`, `@auth`, `@ownerOnly`) derived from column visibility annotations.
-- `ControllerAction` adapter reuses existing REST logic as GraphQL mutations without duplication.
-
-**Built for AI:** A functioning Pickle app is ~2,000 tokens of source. Ships an MCP server that gives AI models queryable access to your project’s structure — routes, middleware, validation rules, schema, roles, actions — without dumping source files into context. Even lightweight models produce code that respects your schema, validation rules, and security boundaries.
+My strongest work is at the boundary between application security and developer tooling: routes, middleware, authorization, ORM usage, serializers, request validation, data flow, and the places where real vulnerabilities hide between those layers.
 
 ---
 
-### 🦅 [TelHawk Stack](https://github.com/telhawk-systems/telhawk-stack) — Open Cybersecurity SIEM Platform
+## 🥒 Pickle
 
-An **OCSF-compliant**, **Go-based** SIEM platform using **OpenSearch** for log storage and analysis. Built on the principle of high-context UI design to optimize for AI and human efficiency.
+**Secure foundations for agentic software development**  
+[github.com/shortontech/pickle](https://github.com/shortontech/pickle)
 
-- Modular microservices for **auth**, **ingestion**, **query**, and **visualization**.
-- CLI tool (`thawk`) for token management, event ingestion, and SPL-style searches.
-- Splunk HEC-compatible ingestion for easy migration from proprietary platforms.
+Pickle is a secure-by-design Go code generation framework and research project for apps that need to be understandable, auditable, and safe for humans and AI agents to modify.
 
----
+It turns a declared application model into plain, idiomatic Go with explicit security posture and no runtime dependency on Pickle. The goal is not to invent a clever framework for its own sake; the goal is to make common AppSec failure modes structurally difficult to express and easy to verify.
 
-## 🧠 Tech Arsenal
+Pickle generates and verifies:
 
-`Go` • `Python` • `TypeScript` • `SQL` • `C#` • `Docker` • `Kubernetes` • `AWS` • `Terraform` • `PostgreSQL` • `Kafka` • `GitHub Actions` • `GitLab`
+- typed request binding and validation
+- parameterized query builders
+- explicit route and middleware wiring
+- ownership-scoped data access
+- RBAC and gated actions
+- GraphQL exposure rules
+- sealed/encrypted field handling
+- immutable audit-table integrity checks
+- framework-level static analysis through `pickle squeeze`
+- conventional Go export through `pickle export`
 
----
-
-## 💼 Career Highlights
-
-### Horton Security Consulting — Independent Consultant (Apr 2025 – Present)
-Incident response and infrastructure hardening across multiple client organizations. Built static analysis tooling in Go using tree-sitter that performs deterministic security analysis across Django, Laravel, and Rails codebases — identified a vulnerability in a major open-source project within five hours, resulting in an invitation to their private bug bounty program.
-
----
-
-### Bitcoin Solutions — Security Engineering Lead (Aug 2022 – Apr 2025)
-Rebuilt logging infrastructure and layered real-time analytics on top, catching a breach that would have been invisible under the previous setup. Red-teamed OpenAI and Anthropic models for customer support automation — built reproducible jailbreak exploits via prompt injection and narrative manipulation, recommended against deployment. Enforced automated security scanning (SAST/DAST/dependencies) in GitLab pipelines without exceptions.
+`pickle export` packages the same generated Go used by normal Pickle builds into a conventional application layout, so teams can keep the security guarantees without betting their application’s future on a custom framework runtime.
 
 ---
 
-### SDK Worldwide LLC — Security & Data Engineer (Feb 2019 – Apr 2022)
-Built secure ETL pipelines in Python unifying data from Google Ads, Facebook, Stripe, and PayPal. Designed real-time anomaly detection that caught ad fraud before it drained customer budgets, blocking 52% of bot traffic. Managed security operations across client organizations — removed backdoors, revoked orphaned access, unified access controls via OAuth and secrets management.
+## 🦅 TelHawk
+
+**Security telemetry and event tooling for high-context review**  
+[github.com/telhawk-systems/telhawk-stack](https://github.com/telhawk-systems/telhawk-stack)
+
+TelHawk is an event management and security telemetry project built around one principle: alerts and events are only useful when they carry the right context for a human or AI reviewer to act on them.
+
+The project includes SIEM-oriented components, structured event ingestion, and supporting infrastructure for review workflows that prioritize clarity over dashboards full of noise.
+
+Related work includes TelHawk Proxy: a first-party telemetry reverse proxy with HMAC-authenticated routing and pluggable sinks for Kafka, PostgreSQL, and NDJSON.
 
 ---
 
-### Capital Research International — Security Engineering Lead (Mar 2017 – Sep 2018)
-Set standards for four developers: code reviews, automated testing, CI/CD with feature flags. Daily releases, zero rollback. Defended against persistent APT-level threats (China, North Korea) with zero breaches using honeypots to misdirect attackers into controlled environments. Consolidated 15 fragmented systems into a single API surface.
+## 🔍 Security tooling focus
+
+I build tools that reason across framework boundaries instead of scanning files in isolation.
+
+The vulnerability classes I care most about usually live in the seams:
+
+- an authenticated route with an unscoped ORM query
+- a serializer or resource exposing fields it should not
+- a middleware chain that looks protected but no longer enforces the intended guard
+- a write path with strong authorization paired with a read path that is weaker
+- a generated or framework convention that quietly became the security contract
+
+My recent work focuses on framework-aware analysis that connects routes, auth posture, ORM behavior, serializers, schema, and data flow into one reviewable picture.
 
 ---
 
-### MAS Group Inc. — Software Security Engineer (Dec 2015 – Mar 2017)
-Inherited a legacy codebase handling customer money; built static analysis tooling that traced variable flow into SQL to find injection paths — the earliest version of what became Pickle. Gate-kept every product launch; nothing shipped without passing security review.
+## 🛠️ What I like building
+
+- secure-by-design frameworks and code generators
+- static analysis over real application semantics
+- AppSec tools that produce proof, not just alerts
+- CI guardrails developers can trust
+- systems that make secure implementation the default path
+- incident visibility that turns “we think something happened” into “here is the path”
 
 ---
 
-### 📫 Connect
-[LinkedIn](https://www.linkedin.com/in/steven-horton-66325520/)
+## ⚡ Selected background
 
+- Built observability and real-time analytics that made a crypto exchange breach immediately visible; helped identify the attack vector, contain the incident, and restore operations with zero customer impact.
+- Built framework-aware static analysis tooling using tree-sitter to reason across routes, authentication, ORM queries, serializers, and data flow in Django, Laravel, and Rails applications.
+- Built fraud-detection and attribution tooling that blocked 52%+ of incoming bot traffic and protected millions in annual marketing spend.
+- Enforced automated SAST, DAST, and dependency scanning in GitLab pipelines without manual review workarounds.
+- Built and secured fintech, marketplace, payments, telemetry, and analytics systems across Go, Python, TypeScript, PHP, SQL, AWS, Docker, and Kubernetes.
+
+---
+
+## 🧰 Languages and tools
+
+**Languages:** Go, Python, TypeScript / JavaScript, PHP, SQL, C#  
+**Frameworks:** Django, Laravel, Node.js, React, Next.js, Rails familiarity through security tooling  
+**Security:** AppSec, threat modeling, incident response, secure SDLC, SAST/DAST, OWASP Top 10, auth/RBAC, cryptographic key management  
+**Cloud / DevOps:** AWS, Docker, Kubernetes, Terraform, GitLab CI, GitHub Actions, Linux, PostgreSQL, MySQL
+
+---
+
+## 🧭 How I think about security
+
+Security should not depend on every developer remembering every rule every time.
+
+The best security work changes the shape of the system: safer defaults, explicit contracts, generated constraints, fast feedback, and artifacts that explain why a finding is real. Review still matters, but review gets a lot better when the codebase is built to make the important paths visible.
