@@ -1,7 +1,6 @@
 # Steven Horton
 
-**Security Engineer** · Lancaster, CA · Open to relocation  
-Secure-by-design tooling · Framework-aware AppSec · Incident response · Developer guardrails
+**Application security · Secure-by-design tooling · Framework-aware analysis · Developer guardrails**
 
 I build application security tooling for engineers who need more than scanner output. My work focuses on secure-by-design systems, framework-aware static analysis, code generation, and review artifacts that make security assumptions visible in the repository.
 
