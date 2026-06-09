@@ -13,19 +13,19 @@ Recent work includes public whitepapers on application-specific AppSec controls 
 
 ### [Using Agentic Tooling to Build Application-Specific AppSec Controls](https://shortontech.github.io/whitepapers/application-specific-appsec-controls/)
 
-Most AppSec tools are broad by design, but many real failures are specific to one application. This paper argues for turning repeated security judgment into repository-owned controls: static checks, CI gates, analyzer plugins, review bots, and proof artifacts that encode local invariants. The examples cover tenant boundaries, serializer exposure, webhook verification, dependency reachability, and state-transition rules.
+Most AppSec tools are broad by design, but many real failures are specific to one application. Repeated security judgment can become repository-owned controls: static checks, CI gates, analyzer plugins, review bots, and proof artifacts that encode local invariants. The examples cover tenant boundaries, serializer exposure, webhook verification, dependency reachability, and state-transition rules.
 
 The core idea is that AI is useful when it helps build enforcement, not when it replaces review. An agent can read a codebase, find sibling patterns, draft an invariant, generate fixtures, and iterate on false positives. The security engineer still owns judgment. The endpoint is a control the repository can run again.
 
 ### [Policy-Carrying Fields for Application-Specific Security Tooling](https://shortontech.github.io/whitepapers/policy-carrying-fields/)
 
-This paper extends the AppSec controls argument into the model layer. Instead of leaving visibility, logging, mutation, serialization, and audit expectations scattered across code review comments or wiki pages, ordinary ORM fields can carry security intent directly. A field can say who may see it, who may mutate it, whether it may be logged, whether it can cross an API boundary, and what audit behavior it requires.
+The model layer is the natural place to make security intent explicit. Instead of leaving visibility, logging, mutation, serialization, and audit expectations scattered across code review comments or wiki pages, ordinary ORM fields can carry security intent directly. A field can say who may see it, who may mutate it, whether it may be logged, whether it can cross an API boundary, and what audit behavior it requires.
 
 Once that intent is explicit, static analysis and generated metadata can enforce it. A diagnosis, internal risk flag, treatment plan, and audit record should not move through the application in the same way. The point is not to create a new ORM. The point is to augment the model surface developers already trust.
 
 ### [Human Swarm Mode](https://shortontech.github.io/whitepapers/human-swarm-mode/)
 
-Human Swarm Mode is a broader workforce and technical-operations paper. It argues that AI can create more technical workers, not fewer, when used as infrastructure for AI-native apprenticeship. The model pairs senior expert review with narrow problem lanes, disciplined artifacts, and operators who learn a bounded domain deeply enough to prioritize inside it.
+AI can create more technical workers, not fewer, when used as infrastructure for AI-native apprenticeship. Human Swarm Mode pairs senior expert review with narrow problem lanes, disciplined artifacts, and operators who learn a bounded domain deeply enough to prioritize inside it.
 
 It separates learning, design, and validation: operators expand learning and execution capacity, engineers integrate systems, and deep domain experts validate assumptions, data, models, and interpretation. The strongest version is not “AI replaces people.” It is an accelerator for AI powered by human beings who provide priority, judgment, accountability, and escalation.
 
