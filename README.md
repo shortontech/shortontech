@@ -13,6 +13,9 @@
 pickle generates secure, inspectable go backends from application models and access rules—with no runtime framework dependency.
 
 ## why
+
 nickel exists because i couldn't launch fortnite with my controller without ugly full screen ui launchers. 
+
 twinkle exists because nickel's ui became useful outside of nickel.
+
 pickle exists because existing security tooling isn't good enough.
